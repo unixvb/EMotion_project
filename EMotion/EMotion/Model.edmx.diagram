@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6d49e735ba894b3e94dbd1d260a8589b" Name="Diagram1" ZoomLevel="46">
+        <EntityTypeShape EntityType="EMotion_DBModel.CarInfo_T" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMotion_DBModel.CarModel_T" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMotion_DBModel.CarProducer_T" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMotion_DBModel.Category_T" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMotion_DBModel.Item_T" Width="1.5" PointX="14.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMotion_DBModel.ItemInfo_T" Width="1.5" PointX="17" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMotion_DBModel.ItemProducer_T" Width="1.5" PointX="14.125" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMotion_DBModel.Order_T" Width="1.5" PointX="1" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMotion_DBModel.OrderItem_T" Width="1.5" PointX="16.625" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMotion_DBModel.Price_T" Width="1.5" PointX="16.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMotion_DBModel.SubCategory_T" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMotion_DBModel.SubSubCategory_T" Width="1.5" PointX="12" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMotion_DBModel.Trade_T" Width="1.5" PointX="14.375" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMotion_DBModel.User_T" Width="1.5" PointX="0.875" PointY="8.875" IsExpanded="true" />
+        <AssociationConnector Association="EMotion_DBModel.CarInfo_T_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="EMotion_DBModel.Category_T_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="EMotion_DBModel.CarModel_T_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="EMotion_DBModel.SubCategory_T_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="EMotion_DBModel.Item_T_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="EMotion_DBModel.Item_T_fk1" ManuallyRouted="false" />
+        <AssociationConnector Association="EMotion_DBModel.ItemInfo_T_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="EMotion_DBModel.Price_T_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="EMotion_DBModel.Trade_T_fk1" ManuallyRouted="false" />
+        <AssociationConnector Association="EMotion_DBModel.Order_T_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="EMotion_DBModel.OrderItem_T_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="EMotion_DBModel.OrderItem_T_fk1" ManuallyRouted="false" />
+        <AssociationConnector Association="EMotion_DBModel.SubSubCategory_T_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="EMotion_DBModel.Trade_T_fk0" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

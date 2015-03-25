@@ -1,0 +1,960 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EMotion_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CarInfo_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarModelID" Type="int" />
+          <Property Name="Modification" Type="varchar" MaxLength="16" />
+          <Property Name="Code" Type="varchar" MaxLength="16" />
+          <Property Name="EngineType" Type="varchar" MaxLength="16" />
+          <Property Name="EngineModel" Type="varchar" MaxLength="16" />
+          <Property Name="EngineCapacity" Type="varchar" MaxLength="16" />
+          <Property Name="EnginePower" Type="int" />
+          <Property Name="DriveType" Type="varchar" MaxLength="16" />
+          <Property Name="BeginOfExploitation" Type="int" />
+          <Property Name="EndOfExploitation" Type="int" />
+        </EntityType>
+        <EntityType Name="CarModel_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarProducerID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="CarProducer_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="Category_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarInfoID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="Item_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="SubSubCategoryID" Type="int" />
+          <Property Name="Description" Type="varchar" MaxLength="32" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemProducerID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="32" />
+          <Property Name="Reference" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="ItemInfo_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ItemID" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InfoName" Type="varchar" MaxLength="16" />
+          <Property Name="InfoValue" Type="varchar" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="ItemProducer_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="32" />
+          <Property Name="Address" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="Order_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Time" Type="int" />
+          <Property Name="Cost" Type="int" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="OrderItem_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="PriceID" Type="int" />
+          <Property Name="Count" Type="int" />
+        </EntityType>
+        <EntityType Name="Price_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemID" Type="int" />
+          <Property Name="UnitCost" Type="int" />
+          <Property Name="Time" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="SubCategory_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="SubSubCategory_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="SubCategoryID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="32" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Trade_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Description" Type="varchar" MaxLength="256" />
+          <Property Name="Time" Type="time" Precision="7" />
+          <Property Name="Status" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="ItemID" Type="int" />
+        </EntityType>
+        <EntityType Name="User_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="32" />
+          <Property Name="Password" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <Association Name="CarInfo_T_fk0">
+          <End Role="CarModel_T" Type="Self.CarModel_T" Multiplicity="0..1" />
+          <End Role="CarInfo_T" Type="Self.CarInfo_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarModel_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CarInfo_T">
+              <PropertyRef Name="CarModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CarModel_T_fk0">
+          <End Role="CarProducer_T" Type="Self.CarProducer_T" Multiplicity="0..1" />
+          <End Role="CarModel_T" Type="Self.CarModel_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarProducer_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CarModel_T">
+              <PropertyRef Name="CarProducerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Category_T_fk0">
+          <End Role="CarInfo_T" Type="Self.CarInfo_T" Multiplicity="0..1" />
+          <End Role="Category_T" Type="Self.Category_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarInfo_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Category_T">
+              <PropertyRef Name="CarInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Item_T_fk0">
+          <End Role="SubSubCategory_T" Type="Self.SubSubCategory_T" Multiplicity="0..1" />
+          <End Role="Item_T" Type="Self.Item_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubSubCategory_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Item_T">
+              <PropertyRef Name="SubSubCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Item_T_fk1">
+          <End Role="ItemProducer_T" Type="Self.ItemProducer_T" Multiplicity="0..1" />
+          <End Role="Item_T" Type="Self.Item_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemProducer_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Item_T">
+              <PropertyRef Name="ItemProducerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ItemInfo_T_fk0">
+          <End Role="Item_T" Type="Self.Item_T" Multiplicity="0..1" />
+          <End Role="ItemInfo_T" Type="Self.ItemInfo_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ItemInfo_T">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Order_T_fk0">
+          <End Role="User_T" Type="Self.User_T" Multiplicity="0..1" />
+          <End Role="Order_T" Type="Self.Order_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order_T">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderItem_T_fk0">
+          <End Role="Order_T" Type="Self.Order_T" Multiplicity="0..1" />
+          <End Role="OrderItem_T" Type="Self.OrderItem_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderItem_T">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderItem_T_fk1">
+          <End Role="Price_T" Type="Self.Price_T" Multiplicity="0..1" />
+          <End Role="OrderItem_T" Type="Self.OrderItem_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderItem_T">
+              <PropertyRef Name="PriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Price_T_fk0">
+          <End Role="Item_T" Type="Self.Item_T" Multiplicity="0..1" />
+          <End Role="Price_T" Type="Self.Price_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Price_T">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SubCategory_T_fk0">
+          <End Role="Category_T" Type="Self.Category_T" Multiplicity="0..1" />
+          <End Role="SubCategory_T" Type="Self.SubCategory_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SubCategory_T">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SubSubCategory_T_fk0">
+          <End Role="SubCategory_T" Type="Self.SubCategory_T" Multiplicity="0..1" />
+          <End Role="SubSubCategory_T" Type="Self.SubSubCategory_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCategory_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SubSubCategory_T">
+              <PropertyRef Name="SubCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Trade_T_fk0">
+          <End Role="User_T" Type="Self.User_T" Multiplicity="0..1" />
+          <End Role="Trade_T" Type="Self.Trade_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Trade_T">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Trade_T_fk1">
+          <End Role="Item_T" Type="Self.Item_T" Multiplicity="0..1" />
+          <End Role="Trade_T" Type="Self.Trade_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Trade_T">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EMotion_DBModelStoreContainer">
+          <EntitySet Name="CarInfo_T" EntityType="Self.CarInfo_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarModel_T" EntityType="Self.CarModel_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarProducer_T" EntityType="Self.CarProducer_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category_T" EntityType="Self.Category_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item_T" EntityType="Self.Item_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemInfo_T" EntityType="Self.ItemInfo_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemProducer_T" EntityType="Self.ItemProducer_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_T" EntityType="Self.Order_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderItem_T" EntityType="Self.OrderItem_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Price_T" EntityType="Self.Price_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubCategory_T" EntityType="Self.SubCategory_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubSubCategory_T" EntityType="Self.SubSubCategory_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trade_T" EntityType="Self.Trade_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_T" EntityType="Self.User_T" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="CarInfo_T_fk0" Association="Self.CarInfo_T_fk0">
+            <End Role="CarModel_T" EntitySet="CarModel_T" />
+            <End Role="CarInfo_T" EntitySet="CarInfo_T" />
+          </AssociationSet>
+          <AssociationSet Name="CarModel_T_fk0" Association="Self.CarModel_T_fk0">
+            <End Role="CarProducer_T" EntitySet="CarProducer_T" />
+            <End Role="CarModel_T" EntitySet="CarModel_T" />
+          </AssociationSet>
+          <AssociationSet Name="Category_T_fk0" Association="Self.Category_T_fk0">
+            <End Role="CarInfo_T" EntitySet="CarInfo_T" />
+            <End Role="Category_T" EntitySet="Category_T" />
+          </AssociationSet>
+          <AssociationSet Name="Item_T_fk0" Association="Self.Item_T_fk0">
+            <End Role="SubSubCategory_T" EntitySet="SubSubCategory_T" />
+            <End Role="Item_T" EntitySet="Item_T" />
+          </AssociationSet>
+          <AssociationSet Name="Item_T_fk1" Association="Self.Item_T_fk1">
+            <End Role="ItemProducer_T" EntitySet="ItemProducer_T" />
+            <End Role="Item_T" EntitySet="Item_T" />
+          </AssociationSet>
+          <AssociationSet Name="ItemInfo_T_fk0" Association="Self.ItemInfo_T_fk0">
+            <End Role="Item_T" EntitySet="Item_T" />
+            <End Role="ItemInfo_T" EntitySet="ItemInfo_T" />
+          </AssociationSet>
+          <AssociationSet Name="Order_T_fk0" Association="Self.Order_T_fk0">
+            <End Role="User_T" EntitySet="User_T" />
+            <End Role="Order_T" EntitySet="Order_T" />
+          </AssociationSet>
+          <AssociationSet Name="OrderItem_T_fk0" Association="Self.OrderItem_T_fk0">
+            <End Role="Order_T" EntitySet="Order_T" />
+            <End Role="OrderItem_T" EntitySet="OrderItem_T" />
+          </AssociationSet>
+          <AssociationSet Name="OrderItem_T_fk1" Association="Self.OrderItem_T_fk1">
+            <End Role="Price_T" EntitySet="Price_T" />
+            <End Role="OrderItem_T" EntitySet="OrderItem_T" />
+          </AssociationSet>
+          <AssociationSet Name="Price_T_fk0" Association="Self.Price_T_fk0">
+            <End Role="Item_T" EntitySet="Item_T" />
+            <End Role="Price_T" EntitySet="Price_T" />
+          </AssociationSet>
+          <AssociationSet Name="SubCategory_T_fk0" Association="Self.SubCategory_T_fk0">
+            <End Role="Category_T" EntitySet="Category_T" />
+            <End Role="SubCategory_T" EntitySet="SubCategory_T" />
+          </AssociationSet>
+          <AssociationSet Name="SubSubCategory_T_fk0" Association="Self.SubSubCategory_T_fk0">
+            <End Role="SubCategory_T" EntitySet="SubCategory_T" />
+            <End Role="SubSubCategory_T" EntitySet="SubSubCategory_T" />
+          </AssociationSet>
+          <AssociationSet Name="Trade_T_fk0" Association="Self.Trade_T_fk0">
+            <End Role="User_T" EntitySet="User_T" />
+            <End Role="Trade_T" EntitySet="Trade_T" />
+          </AssociationSet>
+          <AssociationSet Name="Trade_T_fk1" Association="Self.Trade_T_fk1">
+            <End Role="Item_T" EntitySet="Item_T" />
+            <End Role="Trade_T" EntitySet="Trade_T" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EMotion_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CarInfo_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarModelID" Type="Int32" />
+          <Property Name="Modification" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Code" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="EngineType" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="EngineModel" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="EngineCapacity" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="EnginePower" Type="Int32" />
+          <Property Name="DriveType" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="BeginOfExploitation" Type="Int32" />
+          <Property Name="EndOfExploitation" Type="Int32" />
+          <NavigationProperty Name="CarModel_T" Relationship="Self.CarInfo_T_fk0" FromRole="CarInfo_T" ToRole="CarModel_T" />
+          <NavigationProperty Name="Category_T" Relationship="Self.Category_T_fk0" FromRole="CarInfo_T" ToRole="Category_T" />
+        </EntityType>
+        <EntityType Name="CarModel_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarProducerID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CarInfo_T" Relationship="Self.CarInfo_T_fk0" FromRole="CarModel_T" ToRole="CarInfo_T" />
+          <NavigationProperty Name="CarProducer_T" Relationship="Self.CarModel_T_fk0" FromRole="CarModel_T" ToRole="CarProducer_T" />
+        </EntityType>
+        <EntityType Name="CarProducer_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CarModel_T" Relationship="Self.CarModel_T_fk0" FromRole="CarProducer_T" ToRole="CarModel_T" />
+        </EntityType>
+        <EntityType Name="Category_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarInfoID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CarInfo_T" Relationship="Self.Category_T_fk0" FromRole="Category_T" ToRole="CarInfo_T" />
+          <NavigationProperty Name="SubCategory_T" Relationship="Self.SubCategory_T_fk0" FromRole="Category_T" ToRole="SubCategory_T" />
+        </EntityType>
+        <EntityType Name="Item_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="SubSubCategoryID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemProducerID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Reference" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SubSubCategory_T" Relationship="Self.Item_T_fk0" FromRole="Item_T" ToRole="SubSubCategory_T" />
+          <NavigationProperty Name="ItemProducer_T" Relationship="Self.Item_T_fk1" FromRole="Item_T" ToRole="ItemProducer_T" />
+          <NavigationProperty Name="ItemInfo_T" Relationship="Self.ItemInfo_T_fk0" FromRole="Item_T" ToRole="ItemInfo_T" />
+          <NavigationProperty Name="Price_T" Relationship="Self.Price_T_fk0" FromRole="Item_T" ToRole="Price_T" />
+          <NavigationProperty Name="Trade_T" Relationship="Self.Trade_T_fk1" FromRole="Item_T" ToRole="Trade_T" />
+        </EntityType>
+        <EntityType Name="ItemInfo_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InfoName" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="InfoValue" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Item_T" Relationship="Self.ItemInfo_T_fk0" FromRole="ItemInfo_T" ToRole="Item_T" />
+        </EntityType>
+        <EntityType Name="ItemProducer_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Item_T" Relationship="Self.Item_T_fk1" FromRole="ItemProducer_T" ToRole="Item_T" />
+        </EntityType>
+        <EntityType Name="Order_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Time" Type="Int32" />
+          <Property Name="Cost" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="User_T" Relationship="Self.Order_T_fk0" FromRole="Order_T" ToRole="User_T" />
+          <NavigationProperty Name="OrderItem_T" Relationship="Self.OrderItem_T_fk0" FromRole="Order_T" ToRole="OrderItem_T" />
+        </EntityType>
+        <EntityType Name="OrderItem_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="PriceID" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <NavigationProperty Name="Order_T" Relationship="Self.OrderItem_T_fk0" FromRole="OrderItem_T" ToRole="Order_T" />
+          <NavigationProperty Name="Price_T" Relationship="Self.OrderItem_T_fk1" FromRole="OrderItem_T" ToRole="Price_T" />
+        </EntityType>
+        <EntityType Name="Price_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemID" Type="Int32" />
+          <Property Name="UnitCost" Type="Int32" />
+          <Property Name="Time" Type="Time" Precision="7" />
+          <NavigationProperty Name="Item_T" Relationship="Self.Price_T_fk0" FromRole="Price_T" ToRole="Item_T" />
+          <NavigationProperty Name="OrderItem_T" Relationship="Self.OrderItem_T_fk1" FromRole="Price_T" ToRole="OrderItem_T" />
+        </EntityType>
+        <EntityType Name="SubCategory_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Category_T" Relationship="Self.SubCategory_T_fk0" FromRole="SubCategory_T" ToRole="Category_T" />
+          <NavigationProperty Name="SubSubCategory_T" Relationship="Self.SubSubCategory_T_fk0" FromRole="SubCategory_T" ToRole="SubSubCategory_T" />
+        </EntityType>
+        <EntityType Name="SubSubCategory_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="SubCategoryID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Item_T" Relationship="Self.Item_T_fk0" FromRole="SubSubCategory_T" ToRole="Item_T" />
+          <NavigationProperty Name="SubCategory_T" Relationship="Self.SubSubCategory_T_fk0" FromRole="SubSubCategory_T" ToRole="SubCategory_T" />
+        </EntityType>
+        <EntityType Name="Trade_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Time" Type="Time" Precision="7" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="ItemID" Type="Int32" />
+          <NavigationProperty Name="Item_T" Relationship="Self.Trade_T_fk1" FromRole="Trade_T" ToRole="Item_T" />
+          <NavigationProperty Name="User_T" Relationship="Self.Trade_T_fk0" FromRole="Trade_T" ToRole="User_T" />
+        </EntityType>
+        <EntityType Name="User_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Order_T" Relationship="Self.Order_T_fk0" FromRole="User_T" ToRole="Order_T" />
+          <NavigationProperty Name="Trade_T" Relationship="Self.Trade_T_fk0" FromRole="User_T" ToRole="Trade_T" />
+        </EntityType>
+        <Association Name="CarInfo_T_fk0">
+          <End Role="CarModel_T" Type="Self.CarModel_T" Multiplicity="0..1" />
+          <End Role="CarInfo_T" Type="Self.CarInfo_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarModel_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CarInfo_T">
+              <PropertyRef Name="CarModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Category_T_fk0">
+          <End Role="CarInfo_T" Type="Self.CarInfo_T" Multiplicity="0..1" />
+          <End Role="Category_T" Type="Self.Category_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarInfo_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Category_T">
+              <PropertyRef Name="CarInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CarModel_T_fk0">
+          <End Role="CarProducer_T" Type="Self.CarProducer_T" Multiplicity="0..1" />
+          <End Role="CarModel_T" Type="Self.CarModel_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarProducer_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CarModel_T">
+              <PropertyRef Name="CarProducerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SubCategory_T_fk0">
+          <End Role="Category_T" Type="Self.Category_T" Multiplicity="0..1" />
+          <End Role="SubCategory_T" Type="Self.SubCategory_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SubCategory_T">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Item_T_fk0">
+          <End Role="SubSubCategory_T" Type="Self.SubSubCategory_T" Multiplicity="0..1" />
+          <End Role="Item_T" Type="Self.Item_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubSubCategory_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Item_T">
+              <PropertyRef Name="SubSubCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Item_T_fk1">
+          <End Role="ItemProducer_T" Type="Self.ItemProducer_T" Multiplicity="0..1" />
+          <End Role="Item_T" Type="Self.Item_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemProducer_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Item_T">
+              <PropertyRef Name="ItemProducerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ItemInfo_T_fk0">
+          <End Role="Item_T" Type="Self.Item_T" Multiplicity="0..1" />
+          <End Role="ItemInfo_T" Type="Self.ItemInfo_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ItemInfo_T">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Price_T_fk0">
+          <End Role="Item_T" Type="Self.Item_T" Multiplicity="0..1" />
+          <End Role="Price_T" Type="Self.Price_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Price_T">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Trade_T_fk1">
+          <End Role="Item_T" Type="Self.Item_T" Multiplicity="0..1" />
+          <End Role="Trade_T" Type="Self.Trade_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Trade_T">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Order_T_fk0">
+          <End Role="User_T" Type="Self.User_T" Multiplicity="0..1" />
+          <End Role="Order_T" Type="Self.Order_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order_T">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderItem_T_fk0">
+          <End Role="Order_T" Type="Self.Order_T" Multiplicity="0..1" />
+          <End Role="OrderItem_T" Type="Self.OrderItem_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderItem_T">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderItem_T_fk1">
+          <End Role="Price_T" Type="Self.Price_T" Multiplicity="0..1" />
+          <End Role="OrderItem_T" Type="Self.OrderItem_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderItem_T">
+              <PropertyRef Name="PriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SubSubCategory_T_fk0">
+          <End Role="SubCategory_T" Type="Self.SubCategory_T" Multiplicity="0..1" />
+          <End Role="SubSubCategory_T" Type="Self.SubSubCategory_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCategory_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SubSubCategory_T">
+              <PropertyRef Name="SubCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Trade_T_fk0">
+          <End Role="User_T" Type="Self.User_T" Multiplicity="0..1" />
+          <End Role="Trade_T" Type="Self.Trade_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Trade_T">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EMotion_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CarInfo_T" EntityType="Self.CarInfo_T" />
+          <EntitySet Name="CarModel_T" EntityType="Self.CarModel_T" />
+          <EntitySet Name="CarProducer_T" EntityType="Self.CarProducer_T" />
+          <EntitySet Name="Category_T" EntityType="Self.Category_T" />
+          <EntitySet Name="Item_T" EntityType="Self.Item_T" />
+          <EntitySet Name="ItemInfo_T" EntityType="Self.ItemInfo_T" />
+          <EntitySet Name="ItemProducer_T" EntityType="Self.ItemProducer_T" />
+          <EntitySet Name="Order_T" EntityType="Self.Order_T" />
+          <EntitySet Name="OrderItem_T" EntityType="Self.OrderItem_T" />
+          <EntitySet Name="Price_T" EntityType="Self.Price_T" />
+          <EntitySet Name="SubCategory_T" EntityType="Self.SubCategory_T" />
+          <EntitySet Name="SubSubCategory_T" EntityType="Self.SubSubCategory_T" />
+          <EntitySet Name="Trade_T" EntityType="Self.Trade_T" />
+          <EntitySet Name="User_T" EntityType="Self.User_T" />
+          <AssociationSet Name="CarInfo_T_fk0" Association="Self.CarInfo_T_fk0">
+            <End Role="CarModel_T" EntitySet="CarModel_T" />
+            <End Role="CarInfo_T" EntitySet="CarInfo_T" />
+          </AssociationSet>
+          <AssociationSet Name="Category_T_fk0" Association="Self.Category_T_fk0">
+            <End Role="CarInfo_T" EntitySet="CarInfo_T" />
+            <End Role="Category_T" EntitySet="Category_T" />
+          </AssociationSet>
+          <AssociationSet Name="CarModel_T_fk0" Association="Self.CarModel_T_fk0">
+            <End Role="CarProducer_T" EntitySet="CarProducer_T" />
+            <End Role="CarModel_T" EntitySet="CarModel_T" />
+          </AssociationSet>
+          <AssociationSet Name="SubCategory_T_fk0" Association="Self.SubCategory_T_fk0">
+            <End Role="Category_T" EntitySet="Category_T" />
+            <End Role="SubCategory_T" EntitySet="SubCategory_T" />
+          </AssociationSet>
+          <AssociationSet Name="Item_T_fk0" Association="Self.Item_T_fk0">
+            <End Role="SubSubCategory_T" EntitySet="SubSubCategory_T" />
+            <End Role="Item_T" EntitySet="Item_T" />
+          </AssociationSet>
+          <AssociationSet Name="Item_T_fk1" Association="Self.Item_T_fk1">
+            <End Role="ItemProducer_T" EntitySet="ItemProducer_T" />
+            <End Role="Item_T" EntitySet="Item_T" />
+          </AssociationSet>
+          <AssociationSet Name="ItemInfo_T_fk0" Association="Self.ItemInfo_T_fk0">
+            <End Role="Item_T" EntitySet="Item_T" />
+            <End Role="ItemInfo_T" EntitySet="ItemInfo_T" />
+          </AssociationSet>
+          <AssociationSet Name="Price_T_fk0" Association="Self.Price_T_fk0">
+            <End Role="Item_T" EntitySet="Item_T" />
+            <End Role="Price_T" EntitySet="Price_T" />
+          </AssociationSet>
+          <AssociationSet Name="Trade_T_fk1" Association="Self.Trade_T_fk1">
+            <End Role="Item_T" EntitySet="Item_T" />
+            <End Role="Trade_T" EntitySet="Trade_T" />
+          </AssociationSet>
+          <AssociationSet Name="Order_T_fk0" Association="Self.Order_T_fk0">
+            <End Role="User_T" EntitySet="User_T" />
+            <End Role="Order_T" EntitySet="Order_T" />
+          </AssociationSet>
+          <AssociationSet Name="OrderItem_T_fk0" Association="Self.OrderItem_T_fk0">
+            <End Role="Order_T" EntitySet="Order_T" />
+            <End Role="OrderItem_T" EntitySet="OrderItem_T" />
+          </AssociationSet>
+          <AssociationSet Name="OrderItem_T_fk1" Association="Self.OrderItem_T_fk1">
+            <End Role="Price_T" EntitySet="Price_T" />
+            <End Role="OrderItem_T" EntitySet="OrderItem_T" />
+          </AssociationSet>
+          <AssociationSet Name="SubSubCategory_T_fk0" Association="Self.SubSubCategory_T_fk0">
+            <End Role="SubCategory_T" EntitySet="SubCategory_T" />
+            <End Role="SubSubCategory_T" EntitySet="SubSubCategory_T" />
+          </AssociationSet>
+          <AssociationSet Name="Trade_T_fk0" Association="Self.Trade_T_fk0">
+            <End Role="User_T" EntitySet="User_T" />
+            <End Role="Trade_T" EntitySet="Trade_T" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EMotion_DBModelStoreContainer" CdmEntityContainer="EMotion_DBEntities">
+          <EntitySetMapping Name="CarInfo_T">
+            <EntityTypeMapping TypeName="EMotion_DBModel.CarInfo_T">
+              <MappingFragment StoreEntitySet="CarInfo_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CarModelID" ColumnName="CarModelID" />
+                <ScalarProperty Name="Modification" ColumnName="Modification" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="EngineType" ColumnName="EngineType" />
+                <ScalarProperty Name="EngineModel" ColumnName="EngineModel" />
+                <ScalarProperty Name="EngineCapacity" ColumnName="EngineCapacity" />
+                <ScalarProperty Name="EnginePower" ColumnName="EnginePower" />
+                <ScalarProperty Name="DriveType" ColumnName="DriveType" />
+                <ScalarProperty Name="BeginOfExploitation" ColumnName="BeginOfExploitation" />
+                <ScalarProperty Name="EndOfExploitation" ColumnName="EndOfExploitation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarModel_T">
+            <EntityTypeMapping TypeName="EMotion_DBModel.CarModel_T">
+              <MappingFragment StoreEntitySet="CarModel_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CarProducerID" ColumnName="CarProducerID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarProducer_T">
+            <EntityTypeMapping TypeName="EMotion_DBModel.CarProducer_T">
+              <MappingFragment StoreEntitySet="CarProducer_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category_T">
+            <EntityTypeMapping TypeName="EMotion_DBModel.Category_T">
+              <MappingFragment StoreEntitySet="Category_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CarInfoID" ColumnName="CarInfoID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item_T">
+            <EntityTypeMapping TypeName="EMotion_DBModel.Item_T">
+              <MappingFragment StoreEntitySet="Item_T">
+                <ScalarProperty Name="SubSubCategoryID" ColumnName="SubSubCategoryID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ItemProducerID" ColumnName="ItemProducerID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemInfo_T">
+            <EntityTypeMapping TypeName="EMotion_DBModel.ItemInfo_T">
+              <MappingFragment StoreEntitySet="ItemInfo_T">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="InfoName" ColumnName="InfoName" />
+                <ScalarProperty Name="InfoValue" ColumnName="InfoValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemProducer_T">
+            <EntityTypeMapping TypeName="EMotion_DBModel.ItemProducer_T">
+              <MappingFragment StoreEntitySet="ItemProducer_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_T">
+            <EntityTypeMapping TypeName="EMotion_DBModel.Order_T">
+              <MappingFragment StoreEntitySet="Order_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderItem_T">
+            <EntityTypeMapping TypeName="EMotion_DBModel.OrderItem_T">
+              <MappingFragment StoreEntitySet="OrderItem_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="PriceID" ColumnName="PriceID" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Price_T">
+            <EntityTypeMapping TypeName="EMotion_DBModel.Price_T">
+              <MappingFragment StoreEntitySet="Price_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="UnitCost" ColumnName="UnitCost" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubCategory_T">
+            <EntityTypeMapping TypeName="EMotion_DBModel.SubCategory_T">
+              <MappingFragment StoreEntitySet="SubCategory_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubSubCategory_T">
+            <EntityTypeMapping TypeName="EMotion_DBModel.SubSubCategory_T">
+              <MappingFragment StoreEntitySet="SubSubCategory_T">
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trade_T">
+            <EntityTypeMapping TypeName="EMotion_DBModel.Trade_T">
+              <MappingFragment StoreEntitySet="Trade_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_T">
+            <EntityTypeMapping TypeName="EMotion_DBModel.User_T">
+              <MappingFragment StoreEntitySet="User_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
